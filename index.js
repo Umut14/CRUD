@@ -4,6 +4,7 @@ var app = express();
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('crud', 'root', '2580');
 
+//Veri tabanına bağlanma işlemleri ve verilirin kaydedilmesi
 
 app.get('/Umut', function (req, res) {
 
@@ -29,7 +30,7 @@ app.get('/Umut', function (req, res) {
       firstName: 'Umut',
       lastName: 'Yenikardeşler',
       phone: '542225',
-      email: 'umutyenikardesler@gmail.com'
+      email: 'umut@gmail.com'
     }).then(function(umut) {
       console.log(umut.get({
         plain: true
@@ -43,7 +44,7 @@ app.get('/Umut', function (req, res) {
       firstName: 'Furkan',
       lastName: 'Baykal',
       phone: '553753',
-      email: 'furkanbaykal@gmail.com'
+      email: 'furkan@gmail.com'
     }).then(function(furkan) {
       console.log(furkan.get({
         plain: true
@@ -57,33 +58,12 @@ app.get('/Umut', function (req, res) {
       firstName: 'Barış',
       lastName: 'Esen',
       phone: '542253',
-      email: 'umutyenikardesler@gmail.com'
+      email: 'baris@gmail.com'
     }).then(function(baris) {
       console.log(baris.get({
         plain: true
       }));
       });
-  });
-
-  // sequelize.sync().then(function () {
-  //   // userı id ye göre bul ve getir.
-  //   User.findById(3).then(function(test) {
-  //     //gelen userı desroy et return yap
-  //       return test.destroy();
-  //   });
-  // });
-
-  sequelize.sync().then(function () {
-    // userı id ye göre bul ve getir.
-    User.findById(5).then(function(test) {
-      //gelen userı desroy et return yap
-        return test.update({ firstName: 'ÇAğatay' })
-      });
-
-      var deneme = User.findById(5).then(function(test) {
-        //gelen userı desroy et return yap
-          console.log(deneme);
-        });
   });
 
   res.send('Kullanıcı Veri Tabanına Kaydedildi')
