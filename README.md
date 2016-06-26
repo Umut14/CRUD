@@ -1,1 +1,1 @@
-CRUD (Create-Read-Update-Delete)
+CRUD

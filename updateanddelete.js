@@ -1,37 +1,54 @@
-//Veri tabanına bağlanma işlemleri ve verilirin kaydedilmesi
-
+var express = require('express');
 var app = express();
 
 var Sequelize = require('sequelize');
 var sequelize = new Sequelize('crud', 'root', '2580');
 
+//Veri tabanına bağlanma işlemleri ve verilirin kaydedilmesi
 
 app.get('/Umut', function (req, res) {
 
-// Update Etme işlemleri
+  var User = sequelize.define('user', {
+      firstName: {
+      type: Sequelize.STRING,
+      field: 'first_name'
+    },
+    lastName: {
+      type: Sequelize.STRING
+    },
+    phone: {
+      type: Sequelize.BIGINT
+    },
+    email: {
+      type: Sequelize.STRING
+    }
+  });
 
-  sequelize.sync().then(function () {
-    // userı id ye göre bul ve getir.
-    User.findById(5).then(function(test) {
-      //gelen userı desroy et return yap
-        return test.update({ firstName: 'ÇAğatay' })
-      });
+  // Update Etme işlemleri
 
-      var deneme = User.findById(5).then(function(test) {
-        //gelen userı desroy et return yap
-          console.log(deneme);
+    sequelize.sync().then(function () {
+      // userı id ye göre bul ve getir.
+      User.findById(6).then(function(test) {
+        //gelen userı update et return yap
+          return test.update({ firstName: 'Çağatay' })
         });
-  });
+        //İsterseniz terminelde güncelleştirdiğiniz satırı görebilirsiniz..
+        var deneme = User.findById(6).then(function(test) {
+            console.log(deneme);
+          });
+    });
 
-// Silme işlemleri
 
-sequelize.sync().then(function () {
-  // userı id ye göre bul ve getir.
-  User.findById(3).then(function(test) {
-  //gelen userı desroy et return yap
-      return test.destroy();
-  });
-});
+  // Silme işlemleri
+
+    sequelize.sync().then(function () {
+      // userı id ye göre bul ve getir.
+      User.findById(5).then(function(test) {
+        //gelen userı desroy et return yap
+        return test.destroy();
+      });
+    });
+
 
   res.send('Kullanıcı Veri Tabanına Kaydedildi')
 
